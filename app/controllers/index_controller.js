@@ -23,6 +23,9 @@ exports.signup = function(req, res, next){
 exports.logout = function(req, res, next){
     res.render('logout'); 
 };
+exports.login = function(req, res, next){
+    res.render('login'); 
+};
 exports.index1 = function(req, res, next){
     res.render('index1'); 
 };
