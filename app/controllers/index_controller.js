@@ -20,6 +20,12 @@ exports.courses = function(req, res, next){
 exports.signup = function(req, res, next){
     res.render('signup'); 
 };
+exports.signupp = function(req, res, next){
+
+
+let body = req.body;
+res.send(body)
+};
 exports.logout = function(req, res, next){
     res.render('logout'); 
 };

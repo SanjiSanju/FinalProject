@@ -149,14 +149,24 @@
 	</style>
 	<body>
 	
-	<form action="/signup" method="POST" style="border:1px solid #ccc">
+	<form action="/signupp" method="POST" style="border:1px solid #ccc">
 	  <div class="container">
-		<h1>Sign Up</h1>
+		<h1>New here! Sign up to continue</h1>
+	
 		<p>Please fill in this form to create an account.</p>
+		<label for="log">Signup as:</label>
+
+<select name = value>
+  <option value="admin">Admin</option>
+  <option value="parents">Parent</option>
+  <option value="teacher">Teacher</option>
+</select>
+      
+  
 		<hr>
 		<label for="name"><b>Name</b></label>
 		<input type="text" placeholder="Enter Name" name="name" required>
-
+		<input hidden value="sin" type="password" placeholder="Enter Password" name="abcd" required>
 		<label for="email"><b>Email</b></label>
 		<input type="text" placeholder="Enter Email" name="email" required>
 	
@@ -177,6 +187,10 @@
 		  <button type="submit" class="signupbtn">Sign Up</button>
 		</div>
 	  </div>
+	  <div class="text-center">
+	  <p>Already have an account?</p>
+	  <a href="/login" class="site-btn">Login Here!</a>
+	</div>
 	</form>
 	
 
