@@ -1,4 +1,5 @@
 const userCollection = require("../db").collection('users');
+const pCollection = require("../db").collection('parent');
 
 var express = require('express');
 var router = express.Router();
@@ -37,11 +38,26 @@ router.get('/signup', function(req, res) {
   res.render('signup', { title: 'signup' });
 });
 
-router.post('/signupp', async function(req, res) {
+router.post('/signup', async function(req, res) {
 
   userCollection.insertOne(req.body) // Inserting Fname and Lastname Into Users Collection
 // res.send("Data Successfully Added")
-res.render('login')
+res.redirect('/login')
+
+
+// let name = await userCollection.find({name:"Sintheya"}).toArray()
+// res.send(name)
+
+
+ 
+});
+
+
+router.post('/profile', async function(req, res) {
+
+  // pCollection.insertOne(req.body) // Inserting Fname and Lastname Into Users Collection
+// res.send("Data Successfully Added")
+res.send("Parent Added", req.body)
 
 
 // let name = await userCollection.find({name:"Sintheya"}).toArray()
@@ -53,32 +69,64 @@ res.render('login')
 
 
 
-router.post('/loginn', async function(req, res) {
-  // res.send(req.body.uname)
-  let email = req.body.uname
+router.post('/login', async function(req, res) {
+// console.log(req.body)
+// res.send(req.body.email)
+userCollection.findOne({email:req.body.email}).then((user)=>{
+ 
+  if(user && user.psw != req.body.psw){   // IF username is correct but password is wrong
 
-  let name = await userCollection.find({email:email}).toArray()
+    res.send("Incorrect Password")
 
-  res.send(name)
+  } else if(user &&  user.psw == req.body.psw && user.value == req.body.value){  // If All is Correct
+   
+    if(user.value == "admin"){  /// Checking User is admin or not
+    res.redirect("/admin")
+    }
+
+    if(user.value == "teacher"){ /// Checking User is teacher or not
+      res.redirect("/teacher")
+      }
+
+     
+    if(user.value == "parents"){  /// Checking User is parent or not
+      res.redirect("/parents")
+      }
 
 
-  if (value === "admin"){
-     res.render('admin')
+
   }
-    if(value === "parents"){
-      res.render('parent')
-    }
+else{  // IF Username and password all are incorrect
+  res.send("Invalid User & Password")
+  }
 
-    if(value === "teacher"){
-      res.render('teacher')
-    }
-  console.log(this.data)
+}).catch((err)=>{ //If database Error
+
+  res.send(err)
+
+})
+
+  
  
 
 });
 
-router.get('/logout',Index.logout);
-router.get('/index1',Index.index1);
+router.get('/admin', function(req, res) {
+  res.render('admin', { title: 'admin' });
+});
+
+router.get('/parents', function(req, res) {
+  res.render('parents');
+});
+
+router.post('/parents', function(req, res) {
+  res.send('parents');
+});
+
+router.get('/teacher', function(req, res) {
+  res.render('teacher', { title: 'teacher' });
+});
+
 module.exports = router;
  
 

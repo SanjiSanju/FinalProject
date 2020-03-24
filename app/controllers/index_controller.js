@@ -26,12 +26,26 @@ exports.signupp = function(req, res, next){
 let body = req.body;
 res.send(body)
 };
-exports.logout = function(req, res, next){
-    res.render('logout'); 
-};
+
 exports.login = function(req, res, next){
     res.render('login'); 
 };
-exports.index1 = function(req, res, next){
-    res.render('index1'); 
+
+exports.loginn = function(req, res, next){
+
+
+    let body = req.body;
+    res.send(body)
+    };
+    
+exports.admin = function(req, res, next){
+    res.render('admin'); 
+};
+
+exports.parents = function(req, res, next){
+    res.render('parents'); 
+};
+
+exports.teacher = function(req, res, next){
+    res.render('teacher'); 
 };
