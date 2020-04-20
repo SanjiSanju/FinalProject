@@ -1,6 +1,6 @@
 const mongodb = require ('mongodb')
 
-CONNECTIONSTRING = 'mongodb+srv://Abcd:@kfqZjs-X6CVMM3@cluster0-de3fh.mongodb.net/ABCD?retryWrites=true&w=majority'
+CONNECTIONSTRING = 'mongodb+srv://sinthe:shitheya@cluster0-cl4we.mongodb.net/abcd?retryWrites=true&w=majority'
 
 mongodb.connect(CONNECTIONSTRING, {useNewUrlParser: true , useUnifiedTopology: true}, function(err, client){
   module.exports = client.db()

@@ -49,3 +49,7 @@ exports.parents = function(req, res, next){
 exports.teacher = function(req, res, next){
     res.render('teacher'); 
 };
+
+exports.profile = function(req, res, next){
+    res.render('profile'); 
+};

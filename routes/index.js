@@ -1,5 +1,6 @@
 const userCollection = require("../db").collection('users');
-const pCollection = require("../db").collection('parent');
+const pCollection = require("../db").collection('parents');
+const tCollection = require("../db").collection('teacher');
 
 var express = require('express');
 var router = express.Router();
@@ -38,6 +39,26 @@ router.get('/signup', function(req, res) {
   res.render('signup', { title: 'signup' });
 });
 
+router.get('/teacher', function(req, res) {
+  res.render('teacher');
+});
+
+router.post('/teacher', function(req, res) {
+  tCollection.insertOne(req.body)
+  res.send("Done")
+});
+
+router.get('/ali', function(req, res) {
+  res.render('ali');
+});
+
+router.post('/ali', function(req, res) {
+  tCollection.insertOne(req.body)
+  res.send("Done")
+});
+
+
+
 router.post('/signup', async function(req, res) {
 
   userCollection.insertOne(req.body) // Inserting Fname and Lastname Into Users Collection
@@ -55,9 +76,9 @@ res.redirect('/login')
 
 router.post('/profile', async function(req, res) {
 
-  // pCollection.insertOne(req.body) // Inserting Fname and Lastname Into Users Collection
-// res.send("Data Successfully Added")
-res.send("Parent Added", req.body)
+// pCollection.insertOne(req.body) // Inserting Fname and Lastname Into Users Collection
+ res.send("hello")
+//res.redirect('/profile')
 
 
 // let name = await userCollection.find({name:"Sintheya"}).toArray()
@@ -113,18 +134,6 @@ else{  // IF Username and password all are incorrect
 
 router.get('/admin', function(req, res) {
   res.render('admin', { title: 'admin' });
-});
-
-router.get('/parents', function(req, res) {
-  res.render('parents');
-});
-
-router.post('/parents', function(req, res) {
-  res.send('parents');
-});
-
-router.get('/teacher', function(req, res) {
-  res.render('teacher', { title: 'teacher' });
 });
 
 module.exports = router;
